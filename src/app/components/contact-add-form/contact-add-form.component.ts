@@ -9,6 +9,8 @@ import { Contact } from '../../types/contact';
 })
 export class ContactAddFormComponent {
   @Output() save: EventEmitter<Contact> = new EventEmitter<Contact>();
+  @Output() cancel: EventEmitter<void> = new EventEmitter<void>();
+
   contactForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {
@@ -46,5 +48,9 @@ export class ContactAddFormComponent {
       this.save.emit(newContact);
       this.contactForm.reset();
     }
+  }
+
+  cancelAdd() {
+    this.cancel.emit();
   }
 }

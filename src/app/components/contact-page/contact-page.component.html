@@ -1,0 +1,27 @@
+<app-contact-search
+  (search)="onSearch($event)"
+></app-contact-search>
+
+<button
+  class="add-contact-button"
+  (click)="toggleFormVisibility()"
+>
+  Add Contact
+</button>
+
+<app-contact-list
+  [contacts]="filteredContacts"
+></app-contact-list>
+
+<app-contact-add-form
+  *ngIf="showForm"
+  (save)="saveContact($event)"
+  (cancel)="cancelAdd()">
+></app-contact-add-form>
+
+<app-contact-edit
+  *ngIf="selectedContact"
+  [editedContact]="selectedContact"
+  (save)="saveContactChanges($event)"
+  (cancel)="cancelEdit()">
+</app-contact-edit>

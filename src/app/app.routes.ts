@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ContactListComponent } from './components/contact-list/contact-list.component';
 import { ContactDetailComponent } from './components/contact-detail/contact-detail.component';
+import { ContactPageComponent } from './components/contact-page/contact-page.component';
 
 const routes: Routes = [
-  { path: '', component: ContactListComponent },
+  { path: '', component: ContactPageComponent },
   { path: 'contact/:id', component: ContactDetailComponent }
 ];
 

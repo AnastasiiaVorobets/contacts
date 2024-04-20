@@ -9,18 +9,18 @@ import { AppComponent } from './app.component';
 import { ContactListComponent } from './components/contact-list/contact-list.component';
 import { ContactDetailComponent } from './components/contact-detail/contact-detail.component';
 import { ContactSearchComponent } from './components/contact-search/contact-search.component';
-import { ContactDeleteComponent } from './components/contact-delete/contact-delete.component';
 import { ContactAddFormComponent } from './components/contact-add-form/contact-add-form.component';
 import { ContactEditComponent } from './components/contact-edit/contact-edit.component';
+import { ContactPageComponent } from './components/contact-page/contact-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    ContactPageComponent,
     ContactListComponent,
     ContactDetailComponent,
     ContactSearchComponent,
     ContactAddFormComponent,
-    ContactDeleteComponent,
     ContactEditComponent,
   ],
   imports: [

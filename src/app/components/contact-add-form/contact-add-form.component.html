@@ -30,4 +30,5 @@
     <div *ngIf="contactForm.get('address')?.invalid && contactForm.get('address')?.touched" class="error-message">Address is required.</div>
   </div>
   <button type="submit" [disabled]="!contactForm.valid" class="btn-submit">Add Contact</button>
+  <button (click)="cancelAdd()" class="btn-cancel">Cancel</button>
 </form>

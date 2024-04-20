@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Contact } from '../../types/contact';
 import { ContactService } from '../../services/contact.service';
@@ -9,9 +9,7 @@ import { ContactService } from '../../services/contact.service';
   styleUrls: ['./contact-list.component.scss']
 })
 export class ContactListComponent implements OnInit {
-  contacts: Contact[] = [];
-  filteredContacts: Contact[] = [];
-  showForm: boolean = false;
+  @Input() contacts: Contact[] = [];
   selectedContact: Contact | null = null;
 
   constructor(private contactService: ContactService, private router: Router) {}
@@ -23,38 +21,22 @@ export class ContactListComponent implements OnInit {
   getContactsFromService(): void {
     this.contactService.getContacts().subscribe(contacts => {
       this.contacts = contacts || [];
-      this.filteredContacts = this.contacts;
+      this.contacts = this.contacts;
     });
   }
 
-  saveContact(contact: Contact): void {
-    this.contactService.addContact(contact).subscribe(() => {
-      this.getContactsFromService();
-      this.toggleFormVisibility();
-    });
-  }
-
-  toggleFormVisibility(): void {
-    this.showForm = !this.showForm;
-  }
-
-  onSearch(query: string): void {
-    this.filteredContacts = this.contacts.filter(contact =>
-      contact.firstName.toLowerCase().includes(query.toLowerCase()) ||
-      contact.lastName.toLowerCase().includes(query.toLowerCase())
-    );
+  openEditForm(contact: Contact): void {
+    this.selectedContact = contact;
   }
 
   viewContactDetails(contactId: number): void {
     this.router.navigate(['/contact', contactId]);
   }
 
-  handleContactDeleted(): void {
-    this.getContactsFromService();
-  }
-
-  openEditForm(contact: Contact): void {
-    this.selectedContact = contact;
+  deleteContact(contactId: number): void {
+    this.contactService.deleteContact(contactId).subscribe(() => {
+      this.getContactsFromService();
+    });
   }
 
   saveChanges(updatedContact: Contact): void {
