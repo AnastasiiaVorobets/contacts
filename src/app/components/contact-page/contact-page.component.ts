@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Contact } from '../../types/contact';
 import { ContactService } from '../../services/contact.service';
 
@@ -8,10 +8,11 @@ import { ContactService } from '../../services/contact.service';
   styleUrls: ['./contact-page.component.scss']
 })
 export class ContactPageComponent {
+  @Input() selectedContact: Contact | null = null;
+
   contacts: Contact[] = [];
   filteredContacts: Contact[] = [];
   showForm: boolean = false;
-  selectedContact: Contact | null = null;
 
   constructor(private contactService: ContactService) {}
 
@@ -44,7 +45,7 @@ export class ContactPageComponent {
     );
   }
 
-  saveContactChanges(updatedContact: Contact): void {
+  saveChanges(updatedContact: Contact): void {
     this.contactService.updateContact(updatedContact).subscribe(() => {
       this.getContactsFromService();
       this.selectedContact = null;

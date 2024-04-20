@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Contact } from '../../types/contact';
 import { ContactService } from '../../services/contact.service';
@@ -10,7 +10,7 @@ import { ContactService } from '../../services/contact.service';
 })
 export class ContactListComponent implements OnInit {
   @Input() contacts: Contact[] = [];
-  selectedContact: Contact | null = null;
+  @Output() selectedContactEmitter: EventEmitter<Contact> = new EventEmitter<Contact>();
 
   constructor(private contactService: ContactService, private router: Router) {}
 
@@ -21,12 +21,11 @@ export class ContactListComponent implements OnInit {
   getContactsFromService(): void {
     this.contactService.getContacts().subscribe(contacts => {
       this.contacts = contacts || [];
-      this.contacts = this.contacts;
     });
   }
 
   openEditForm(contact: Contact): void {
-    this.selectedContact = contact;
+    this.selectedContactEmitter.emit(contact);
   }
 
   viewContactDetails(contactId: number): void {
@@ -37,16 +36,5 @@ export class ContactListComponent implements OnInit {
     this.contactService.deleteContact(contactId).subscribe(() => {
       this.getContactsFromService();
     });
-  }
-
-  saveChanges(updatedContact: Contact): void {
-    this.contactService.updateContact(updatedContact).subscribe(() => {
-      this.getContactsFromService();
-      this.selectedContact = null;
-    });
-  }
-
-  cancelEdit(): void {
-    this.selectedContact = null;
   }
 }

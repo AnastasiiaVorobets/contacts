@@ -19,10 +19,3 @@
     </div>
   </div>
 </div>
-
-<app-contact-edit
-  *ngIf="selectedContact"
-  [editedContact]="selectedContact"
-  (save)="saveChanges($event)"
-  (cancel)="cancelEdit()">
-</app-contact-edit>

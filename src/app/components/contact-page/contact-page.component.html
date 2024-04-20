@@ -11,6 +11,7 @@
 
 <app-contact-list
   [contacts]="filteredContacts"
+  (selectedContactEmitter)="selectedContact = $event"
 ></app-contact-list>
 
 <app-contact-add-form
@@ -22,6 +23,6 @@
 <app-contact-edit
   *ngIf="selectedContact"
   [editedContact]="selectedContact"
-  (save)="saveContactChanges($event)"
+  (save)="saveChanges($event)"
   (cancel)="cancelEdit()">
 </app-contact-edit>
