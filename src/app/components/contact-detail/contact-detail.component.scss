@@ -1,0 +1,54 @@
+.contact-card {
+  margin: 50px auto;
+  padding: 30px;
+  width: 100%;
+  max-width: 600px;
+  border: 2px solid #f1dfdf;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+
+  h2 {
+    margin-bottom: 20px;
+    font-size: 20px;
+    color: #333;
+  }
+
+  .contact-info {
+    margin-top: 20px;
+
+    .field {
+      margin-bottom: 15px;
+
+      .label {
+        font-size: 16px;
+        font-weight: bold;
+        color: #666;
+      }
+
+      .value {
+        margin-left: 10px;
+        font-size: 16px;
+        color: #333;
+      }
+    }
+  }
+}
+
+.go-home-button {
+  display: inline-block;
+  margin: 10px;
+  padding: 10px 44px;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  background-color: #353434;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #9e8f8f;
+  }
+}

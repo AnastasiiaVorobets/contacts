@@ -1,0 +1,33 @@
+<form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form">
+  <div class="form-group">
+    <label for="firstName">First Name:</label>
+    <input type="text" id="firstName" formControlName="firstName" class="form-control">
+    <div *ngIf="contactForm.get('firstName')?.invalid && contactForm.get('firstName')?.touched" class="error-message">First Name is required.</div>
+  </div>
+  <div class="form-group">
+    <label for="lastName">Last Name:</label>
+    <input type="text" id="lastName" formControlName="lastName" class="form-control">
+    <div *ngIf="contactForm.get('lastName')?.invalid && contactForm.get('lastName')?.touched" class="error-message">Last Name is required.</div>
+  </div>
+  <div class="form-group">
+    <label for="phoneNumber">Phone Number:</label>
+    <input type="text" id="phoneNumber" formControlName="phoneNumber" class="form-control">
+    <div *ngIf="contactForm.get('phoneNumber')?.invalid && contactForm.get('phoneNumber')?.touched" class="error-message">Invalid Phone Number (10 digits required).</div>
+  </div>
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input type="email" id="email" formControlName="email" class="form-control">
+    <div *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched" class="error-message">Invalid Email.</div>
+  </div>
+  <div class="form-group">
+    <label for="birthDate">Birth Date:</label>
+    <input type="date" id="birthDate" formControlName="birthDate" class="form-control">
+    <div *ngIf="contactForm.get('birthDate')?.invalid && contactForm.get('birthDate')?.touched" class="error-message">Birth Date is required.</div>
+  </div>
+  <div class="form-group">
+    <label for="address">Address:</label>
+    <textarea id="address" formControlName="address" class="form-control"></textarea>
+    <div *ngIf="contactForm.get('address')?.invalid && contactForm.get('address')?.touched" class="error-message">Address is required.</div>
+  </div>
+  <button type="submit" [disabled]="!contactForm.valid" class="btn-submit">Add Contact</button>
+</form>

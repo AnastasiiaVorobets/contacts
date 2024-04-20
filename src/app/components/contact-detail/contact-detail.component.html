@@ -1,0 +1,26 @@
+<div *ngIf="contact" class="contact-card">
+  <h2>Contact Details</h2>
+  <div class="contact-info">
+    <div class="field">
+      <span class="label">Name:</span>
+      <span class="value">{{ contact.firstName }} {{ contact.lastName }}</span>
+    </div>
+    <div class="field">
+      <span class="label">Email:</span>
+      <span class="value">{{ contact.email }}</span>
+    </div>
+    <div class="field">
+      <span class="label">Phone:</span>
+      <span class="value">{{ contact.phoneNumber }}</span>
+    </div>
+    <div class="field">
+      <span class="label">Birth Date:</span>
+      <span class="value">{{ contact.birthDate | date}}</span>
+    </div>
+    <div class="field">
+      <span class="label">Address:</span>
+      <span class="value">{{ contact.address }}</span>
+    </div>
+  </div>
+</div>
+<button class="go-home-button" (click)="goHome()">Go Home</button>

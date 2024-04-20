@@ -1,0 +1,48 @@
+<app-contact-search
+  (search)="onSearch($event)"
+></app-contact-search>
+
+<button
+  class="add-contact-button"
+  (click)="toggleFormVisibility()"
+>
+  Add Contact
+</button>
+
+<app-contact-add-form
+  *ngIf="showForm"
+  (save)="saveContact($event)"
+></app-contact-add-form>
+
+<div class="contact-list">
+  <div class="contact-card" *ngFor="let contact of filteredContacts">
+    <div class="contact-info">
+      <div class="field">
+        <span class="label">First Name:</span>
+        <span class="value">{{ contact.firstName }}</span>
+      </div>
+      <div class="field">
+        <span class="label">Last Name:</span>
+        <span class="value">{{ contact.lastName }}</span>
+      </div>
+      <div class="field">
+        <span class="label">Phone Number:</span>
+        <span class="value">{{ contact.phoneNumber }}</span>
+      </div>
+      <button (click)="viewContactDetails(contact.id)">View Details</button>
+      <button (click)="openEditForm(contact)">Edit</button>
+
+      <app-contact-delete
+        [contactId]="contact.id"
+        (contactDeleted)="handleContactDeleted()"
+      ></app-contact-delete>
+    </div>
+  </div>
+</div>
+
+<app-contact-edit
+  *ngIf="selectedContact"
+  [editedContact]="selectedContact"
+  (save)="saveChanges($event)"
+  (cancel)="cancelEdit()">
+</app-contact-edit>
