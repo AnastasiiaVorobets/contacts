@@ -3,12 +3,12 @@
   <div class="field">
     <label for="firstName">First Name:</label>
     <input type="text" id="firstName" [(ngModel)]="editedContact.firstName" name="firstName" required />
-    <div *ngIf="!editedContact.firstName" class="error">First name is required.</div>
+    <div *ngIf="!editedContact.firstName" class="error">Are we sure you want to remove the first name?</div>
   </div>
   <div class="field">
     <label for="lastName">Last Name:</label>
     <input type="text" id="lastName" [(ngModel)]="editedContact.lastName" name="lastName" required />
-    <div *ngIf="!editedContact.lastName" class="error">Last name is required.</div>
+    <div *ngIf="!editedContact.lastName" class="error">Are we sure you want to remove the last name?</div>
   </div>
   <div class="field">
     <label for="phoneNumber">Phone Number:</label>
@@ -25,10 +25,12 @@
   <div class="field">
     <label for="birthDate">Birth Date:</label>
     <input type="date" id="birthDate" [(ngModel)]="editedContact.birthDate" name="birthDate" />
+    <div *ngIf="!editedContact.birthDate" class="error">Are we sure you want to remove the birthDate?</div>
   </div>
   <div class="field">
     <label for="address">Address:</label>
     <textarea id="address" [(ngModel)]="editedContact.address" name="address"></textarea>
+    <div *ngIf="!editedContact.address" class="error">Are we sure you want to remove the address?</div>
   </div>
   <button (click)="saveChanges()">Save Changes</button>
   <button (click)="cancelEdit()">Cancel</button>
