@@ -67,6 +67,23 @@
   }
 }
 
-.contact-edit .field input[type="text"] {
-  border-color: rgba(255, 204, 204, 0.8);
+.contact-edit .field input[type="text"],
+.contact-edit .field input[type="email"],
+.contact-edit .field input[type="date"],
+.contact-edit .field textarea {
+  padding: 8px;
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  border-radius: 5px;
+  transition: border-color 0.3s ease;
+
+  &:hover {
+    border-color: rgba(0, 0, 0, 0.6);
+  }
+
+  &:focus {
+    border-color: rgba(0, 0, 0, 0.4);
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+  }
 }
