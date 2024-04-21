@@ -11,8 +11,20 @@ export class ContactEditComponent {
   @Output() save: EventEmitter<Contact> = new EventEmitter<Contact>();
   @Output() cancel: EventEmitter<void> = new EventEmitter<void>();
 
+  isValidEmail(email: string): boolean {
+    const emailRegex = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+    return emailRegex.test(email);
+  }
+
+  isValidPhoneNumber(phoneNumber: string): boolean {
+    const phoneNumberRegex = /^\d{10}$/;
+    return phoneNumberRegex.test(phoneNumber);
+  }
+
   saveChanges() {
-    this.save.emit(this.editedContact);
+    if (this.isValidEmail(this.editedContact.email) && this.isValidPhoneNumber(this.editedContact.phoneNumber)) {
+      this.save.emit(this.editedContact);
+    }
   }
 
   cancelEdit() {

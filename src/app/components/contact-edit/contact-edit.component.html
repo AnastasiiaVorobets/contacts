@@ -2,27 +2,33 @@
   <h2>Edit Contact</h2>
   <div class="field">
     <label for="firstName">First Name:</label>
-    <input type="text" id="firstName" [(ngModel)]="editedContact.firstName" />
+    <input type="text" id="firstName" [(ngModel)]="editedContact.firstName" name="firstName" required />
+    <div *ngIf="!editedContact.firstName" class="error">First name is required.</div>
   </div>
   <div class="field">
     <label for="lastName">Last Name:</label>
-    <input type="text" id="lastName" [(ngModel)]="editedContact.lastName" />
+    <input type="text" id="lastName" [(ngModel)]="editedContact.lastName" name="lastName" required />
+    <div *ngIf="!editedContact.lastName" class="error">Last name is required.</div>
   </div>
   <div class="field">
     <label for="phoneNumber">Phone Number:</label>
-    <input type="text" id="phoneNumber" [(ngModel)]="editedContact.phoneNumber" />
+    <input type="text" id="phoneNumber" [(ngModel)]="editedContact.phoneNumber" name="phoneNumber" required />
+    <div *ngIf="!editedContact.phoneNumber" class="error">Phone number is required.</div>
+    <div *ngIf="editedContact.phoneNumber && !isValidPhoneNumber(editedContact.phoneNumber)" class="error">Invalid Phone Number (10 digits required)</div>
   </div>
   <div class="field">
     <label for="email">Email:</label>
-    <input type="email" id="email" [(ngModel)]="editedContact.email" />
+    <input type="email" id="email" [(ngModel)]="editedContact.email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" />
+    <div *ngIf="!editedContact.email" class="error">Email is required.</div>
+    <div *ngIf="editedContact.email && !isValidEmail(editedContact.email)" class="error">Invalid email format.</div>
   </div>
   <div class="field">
     <label for="birthDate">Birth Date:</label>
-    <input type="date" id="birthDate" [(ngModel)]="editedContact.birthDate" />
+    <input type="date" id="birthDate" [(ngModel)]="editedContact.birthDate" name="birthDate" />
   </div>
   <div class="field">
     <label for="address">Address:</label>
-    <textarea id="address" [(ngModel)]="editedContact.address"></textarea>
+    <textarea id="address" [(ngModel)]="editedContact.address" name="address"></textarea>
   </div>
   <button (click)="saveChanges()">Save Changes</button>
   <button (click)="cancelEdit()">Cancel</button>
