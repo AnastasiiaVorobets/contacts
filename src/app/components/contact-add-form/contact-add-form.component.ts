@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Contact } from '../../types/contact';
+import { noWhitespaceValidator } from '../../helpers/validator';
 
 @Component({
   selector: 'app-contact-add-form',
@@ -15,12 +16,12 @@ export class ContactAddFormComponent {
 
   constructor(private formBuilder: FormBuilder) {
     this.contactForm = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      phoneNumber: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
-      email: ['', [Validators.required, Validators.email]],
+      firstName: ['', [Validators.required, noWhitespaceValidator]],
+      lastName: ['', [Validators.required, noWhitespaceValidator]],
+      phoneNumber: ['', [Validators.required, Validators.pattern(/^\d{10}$/), noWhitespaceValidator]],
+      email: ['', [Validators.required, Validators.email, noWhitespaceValidator]],
       birthDate: ['', Validators.required],
-      address: ['', Validators.required]
+      address: ['', [Validators.required, noWhitespaceValidator]]
     });
   }
 
